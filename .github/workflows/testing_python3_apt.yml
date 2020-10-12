@@ -11,6 +11,9 @@ jobs:
       - run: sudo apt-get install python3-apt
       - run: python3 -c "import apt" || true
       - run: git clone https://git.launchpad.net/python-apt
+      - run: pwd
+      - run: cd python-apt
+      - run: pwd
       - run: sudo apt build-dep ./ || true
       - run: python3 python-apt/setup.py build || true
       - run: python3 -c "import apt" || true
