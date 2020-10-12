@@ -1,0 +1,16 @@
+# https://git.launchpad.net/python-apt does not work well in virtualenvs
+
+name: testing_python3_apt
+on: [pull_request, push]
+jobs:
+  testing_python3_apt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - run: sudo apt-get install python3-apt
+      - run: python3 -c "import apt" || true
+      - run: git clone https://git.launchpad.net/python-apt
+      - run: sudo apt build-dep ./ || true
+      - run: python3 python-apt/setup.py build || true
+      - run: python3 -c "import apt" || true
