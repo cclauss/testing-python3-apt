@@ -10,8 +10,9 @@ jobs:
       - uses: actions/setup-python@v2
       - run: sudo apt-get install python3-apt
       - run: python3 -c "import apt" || true
+      - run: pip install Sphinx
       - run: git clone https://git.launchpad.net/python-apt
-      - run: sudo apt-get install -y debhelper-compat libapt-pkg-dev
+      - run: sudo apt-get install -y debhelper-compat libapt-pkg-dev python3-distutils-extra
       - run: cd python-apt ; sudo apt build-dep ./ || true
       - run: python3 python-apt/setup.py build || true
       - run: python3 -c "import apt" || true
